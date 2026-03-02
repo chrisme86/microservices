@@ -28,7 +28,7 @@ public class CustomerDto
     @NotEmpty(message = "Email cannot be null or empty")
     private String email;
 
-    @Schema(description = "Name of the Customer", example = "1234567890")
+    @Schema(description = "Mobile number of the Customer", example = "1234567890")
     @Pattern(regexp = "^\\d{10}$", message = "Mobile number must be 10 digits")
     private String mobileNumber;
 

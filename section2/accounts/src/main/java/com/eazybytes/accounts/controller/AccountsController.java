@@ -30,17 +30,17 @@ import jakarta.validation.constraints.Pattern;
 import lombok.AllArgsConstructor;
 import lombok.val;
 
-@RestController
 @Tag(
         name = "CRUD REST APIs for Accounts in EazyBank",
         description = "CRUD REST APIs for Accounts in EazyBank to CREATE, UPDATE, FETCH AND DELETE account details"
 )
+@RestController
 @RequestMapping(path = "/api", produces = MediaType.APPLICATION_JSON_VALUE)
 @Validated // perform validations on all REST apis in this class, parameters have to be done separately
 @AllArgsConstructor // constructor autowiring
 public class AccountsController
 {
-    IAccountsService accountsService;
+    private final IAccountsService accountsService;
 
     @Operation( // doc
             summary = "Create Account REST API",

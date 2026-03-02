@@ -25,8 +25,8 @@ import lombok.val;
 public class AccountServiceImpl implements IAccountsService
 {
 
-    private AccountsRepository accountsRepository;
-    private CustomerRepository customerRepository;
+    private final AccountsRepository accountsRepository;
+    private final CustomerRepository customerRepository;
 
     @Override
     public void createAccount(final CustomerDto customerDto)
@@ -44,11 +44,11 @@ public class AccountServiceImpl implements IAccountsService
 
     private Accounts createNewAccount(final Customer savedCustomer)
     {
-        // the accountId!
         val newAccount = new Accounts();
+        // the accountId!
         final long randomAccNumber = 1000000000L + new Random().nextInt(900000000);
-
         newAccount.setAccountNumber(randomAccNumber);
+
         newAccount.setCustomerId(savedCustomer.getCustomerId());
 
         newAccount.setAccountType(AccountsConstants.SAVINGS);

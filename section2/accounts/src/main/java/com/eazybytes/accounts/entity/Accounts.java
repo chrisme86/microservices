@@ -9,9 +9,7 @@ import lombok.Setter;
 import lombok.ToString;
 
 @Entity
-@Getter
-@Setter
-@ToString
+@Getter @Setter @ToString
 @AllArgsConstructor
 @NoArgsConstructor
 public class Accounts extends BaseEntity
