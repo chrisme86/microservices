@@ -52,7 +52,7 @@ public class CardsServiceImpl implements ICardsService
     public CardsDto fetchCard(final String mobileNumber)
     {
         val card = this.cardsRepository.findByMobileNumber(mobileNumber).orElseThrow(
-                () -> new ResourceNotFoundException("Cards", "mobileNumber", mobileNumber));
+                () -> new ResourceNotFoundException("Card", "mobileNumber", mobileNumber));
         return CardsMapper.mapToCardsDto(card, new CardsDto());
     }
 
@@ -60,7 +60,7 @@ public class CardsServiceImpl implements ICardsService
     public boolean updateCard(final CardsDto cardsDto)
     {
         val card = this.cardsRepository.findByCardNumber(cardsDto.getCardNumber()).orElseThrow(
-                () -> new ResourceNotFoundException("Cards", "cardNumber", cardsDto.getCardType()));
+                () -> new ResourceNotFoundException("Card", "cardNumber", cardsDto.getCardNumber()));
         CardsMapper.mapToCards(cardsDto, card); // write to card
         this.cardsRepository.save(card);
         return true;
@@ -70,7 +70,7 @@ public class CardsServiceImpl implements ICardsService
     public boolean deleteCard(final String mobileNumber)
     {
         val card = this.cardsRepository.findByMobileNumber(mobileNumber).orElseThrow(
-                () -> new ResourceNotFoundException("Cards", "mobileNumber", mobileNumber));
+                () -> new ResourceNotFoundException("Card", "mobileNumber", mobileNumber));
         this.cardsRepository.delete(card);
         return true;
     }

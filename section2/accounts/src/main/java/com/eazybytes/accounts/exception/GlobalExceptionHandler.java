@@ -50,6 +50,7 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler
         return new ResponseEntity<>(errorResponseDTO, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
+    // ################################# Business Exceptions #######################################
     @ExceptionHandler(CustomerAlreadyExistsException.class) // this method handles CustomerAlreadyExistsException
     public ResponseEntity<ErrorResponseDto> handleCustomerAlreadyExistsException(final CustomerAlreadyExistsException exception,
             final WebRequest webRequest)

@@ -5,6 +5,7 @@ import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Pattern;
 import lombok.Data;
 
+// Only for Business related infos. No technical related infos such as id needed.
 @Data
 @Schema( // documentation
         name = "Accounts",

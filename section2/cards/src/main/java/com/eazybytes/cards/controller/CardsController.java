@@ -89,7 +89,7 @@ public class CardsController
             )
     })
     @GetMapping(path = "/fetch")
-    public ResponseEntity<CardsDto> getCardsInformation(
+    public ResponseEntity<CardsDto> fetchCardDetails(
             @Pattern(regexp = "^\\d{10}$", message = "Mobile number must be 10 digits")
             @RequestParam final String mobileNumber)
     {
@@ -121,7 +121,7 @@ public class CardsController
             )
     })
     @PutMapping(path = "/update")
-    public ResponseEntity<ResponseDto> updateCardsInformation(@Valid @RequestBody final CardsDto cardsDto)
+    public ResponseEntity<ResponseDto> updateCardDetails(@Valid @RequestBody final CardsDto cardsDto)
     {
         final boolean isUpdated = this.cardsService.updateCard(cardsDto);
         if(isUpdated)
@@ -157,7 +157,7 @@ public class CardsController
             )
     })
     @DeleteMapping(path = "/delete")
-    public ResponseEntity<ResponseDto> deleteCardsInformation(
+    public ResponseEntity<ResponseDto> deleteCardDetails(
             @Pattern(regexp = "^\\d{10}$", message = "Mobile number must be 10 digits")
             @RequestParam final String mobileNumber)
     {

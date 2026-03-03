@@ -80,7 +80,7 @@ public class AccountServiceImpl implements IAccountsService
         if(accountsDto != null)
         {
             var accounts = this.accountsRepository.findById(accountsDto.getAccountNumber()).orElseThrow(
-                    () -> new ResourceNotFoundException("Acount", "accountNumber", accountsDto.getAccountNumber().toString())
+                    () -> new ResourceNotFoundException("Account", "accountNumber", accountsDto.getAccountNumber().toString())
             );
             // accountsDto new value is mapped to accounts
             AccountsMapper.mapToAccounts(accountsDto, accounts);
