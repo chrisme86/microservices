@@ -1,0 +1,45 @@
+# Docker autocomplete for Powershell: docker completion powershell | Out-String | Invoke-Expression
+# create and run containers:  docker compose up -d # d= detached mode, terminal can be used while command runs in background
+# stop and delete containers:  docker compose down
+
+services:
+  accounts:
+    image: cmiethling/accounts:s4
+    container_name: accounts-ms
+    ports:
+      - "8080:8080"
+      # - "8081:8080" # SAME accounts at 8080 AND 8081 outside docker (try with Postman)
+      # if you want additional accounts at 8081 then make accounts2 at services:
+    deploy:
+      resources:
+        limits:
+          memory: 700m # max 700MB memory allowed
+    networks:
+      - eazybank
+  loans:
+    image: cmiethling/loans:s4
+    container_name: loans-ms
+    ports:
+      - "8090:8090"
+    deploy:
+      resources:
+        limits:
+          memory: 700m
+    networks:
+      - eazybank
+  cards:
+    image: cmiethling/cards:s4
+    container_name: cards-ms
+    ports:
+      - "9000:9000"
+    deploy:
+      resources:
+        limits:
+          memory: 700m
+    networks:
+      - eazybank
+
+# to connect MS' (to connect separate MS use eazybank under networks:)
+networks:
+  eazybank:
+    driver: "bridge" # all MS can communicate with each other
