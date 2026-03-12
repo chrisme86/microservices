@@ -1,0 +1,17 @@
+# when this profile will be activated
+spring:
+  config:
+    activate:
+      on-profile: "prod"
+
+build:
+  version: "1.0"
+
+cards:
+  message: "Welcome to EazyBank cards related prod APIs"
+  contactDetails:
+    name: "Holger Horsto - Product Owner"
+    email: "horsto@eazybank.com"
+  onCallSupport:
+    - (617) 432-2356
+    - (936) 564-8721

@@ -1,0 +1,17 @@
+# when this profile will be activated
+spring:
+  config:
+    activate:
+      on-profile: "prod"
+
+build:
+  version: "1.0"
+
+loans:
+  message: "Welcome to EazyBank loans related prod APIs"
+  contactDetails:
+    name: "Herbert Holgeritis - Product Owner"
+    email: "herberitis@eazybank.com"
+  onCallSupport:
+    - (723) 656-8709
+    - (156) 342-0956
