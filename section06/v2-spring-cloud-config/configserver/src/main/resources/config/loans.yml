@@ -1,0 +1,11 @@
+build:
+  version: "3.0"
+
+loans:
+  message: "Welcome to EazyBank loans related local APIs "
+  contactDetails:
+    name: "Joachim Pieper - Developer"
+    email: "drpiep@eazybank.com"
+  onCallSupport:
+    - (321) 222-1234
+    - (321) 332-1345

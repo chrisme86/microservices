@@ -1,0 +1,12 @@
+# not accounts_qa.yml (like with springBootProfiles application_qa.yml) but accounts-qa.yml
+build:
+  version: "2.0"
+
+accounts:
+  message: "Welcome to EazyBank accounts related QA APIs "
+  contactDetails:
+    name: "Detlef Sost - QA Lead"
+    email: "dsost@eazybank.com"
+  onCallSupport:
+    - (666) 265-3765
+    - (666) 734-8371

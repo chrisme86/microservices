@@ -1,0 +1,51 @@
+spring:
+  application:
+    name: "configserver"
+  profiles:
+    # active: native # activate native profile of spring cloud config server (classpath config under resources)
+    active: git
+  cloud:
+    config:
+      server:
+        native: # defined above; for classpath (under resources/config) and local file system
+          # search-locations: "classpath:/config"
+          search-locations: "file:///${user.home}/dev/Projects/ICG/SpringBoot/udemy-microservices/own-microservices/config"
+        git:
+          uri: "https://github.com/icg-cmiethling/microservices-config"
+          # uri: "https://github.com/eazybytes/eazybytes-config.git"
+          default-label: "main" # branch name
+          timeout: 5 # ConfigServer will fail if not connected to github repo after x seconds
+          clone-on-start: true # please clone github repo to local system during startup (otherwise on first request)
+          force-pull: true # always overwrite local changes when re-starting the configserver
+
+  # Message Queue: all MS need the same connection details so that a monitor will update all changed props in ALL MS via busrefresh
+  rabbitmq:
+    host: "localhost"
+    port: 5672
+    username: "guest"
+    password: "guest"
+
+
+management:
+  endpoints:
+    web:
+      exposure:
+        # enable all management endpoints supported by actuator (and included in pom of accounts ie spring-cloud-starter-bus-amqp enables busrefresh)
+        include: "*"
+        # include: "monitor,health"
+  health: # define endpoint
+    liveness-state:
+      enabled: true
+    readiness-state:
+      enabled: true
+  endpoint:
+    health:
+      probes: # checks
+        enable:true
+
+encrypt:
+  key: "45D81EC1EF61DF9AD8D3E5BB397F9" # eazybytes key (necessary)
+  # key: "CF88D3A6CDC96F0B81C6391F468ED8FD" # own key
+
+server:
+  port: 8071

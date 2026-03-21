@@ -1,0 +1,40 @@
+# Accounts
+server:
+  port: 8080
+spring:
+  application:
+    name: "accounts"
+  profiles:
+    active: "prod"
+  datasource:
+    url: jdbc:h2:mem:testdb
+    driverClassName: org.h2.Driver
+    username: sa
+    password: ''
+  h2:
+    console:
+      enabled: true
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    hibernate:
+      # create tables automatically when server is started
+      ddl-auto: update
+    show-sql: true
+  config:
+    # configserver bc SpringBoot will then connect to Spring Cloud Server (our appname "configserver" has nothing to do with it)
+    import: "optional:configserver:http://localhost:8071/" # remove optional if configserver props are crucial
+
+  # Message Queue: all MS need the same connection details so that a busrefresh will update all changed props in ALL MS
+  rabbitmq:
+    host: "localhost"
+    port: 5672
+    username: "guest"
+    password: "guest"
+
+management:
+  endpoints:
+    web:
+      exposure:
+        # enable all management endpoints supported by actuator (and included in pom of accounts ie spring-cloud-starter-bus-amqp enables busrefresh)
+        include: "*"
+        # include: "refresh, busrefresh"

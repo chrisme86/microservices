@@ -1,0 +1,29 @@
+services:
+  # for all services
+  network-deploy-service:
+    networks:
+      - eazybank
+
+  # for all services except rabbit
+  microservice-base-config:
+    extends:
+      service: network-deploy-service
+    deploy:
+      resources:
+        limits:
+          memory: 700m
+    environment:
+      SPRING_RABBITMQ_HOST: "rabbit" # spring.rabbitmq.host= "localhost" >> localhost has to be name of (docker) service
+
+  # for core services: accounts, cards and loans
+  microservice-configserver-config:
+    extends:
+      service: microservice-base-config
+    environment:
+      # MS must be connected to configserver MS(!) >> spring.config.import from application.yml with localhost=MS name of configserver (=configserver)
+      SPRING_CONFIG_IMPORT: "configserver:http://configserver:8071/"
+      SPRING_PROFILES_ACTIVE: default
+    # depends_on: # not possible with extends within one service (recent docker compose versions)
+    #   configserver:
+    #     condition: service_healthy
+
