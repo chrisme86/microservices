@@ -37,6 +37,7 @@ services:
       file: common-config.yml
       service: microservice-base-config
 
+  # Microservices
   accounts:
     image: cmiethling/accounts:s6
     container_name: accounts-ms
@@ -62,7 +63,7 @@ services:
       configserver:
         condition: service_healthy
     environment:
-      SPRING_APPLICATION_NAME: "cards"
+      SPRING_APPLICATION_NAME: "loans"
     extends:
       file: common-config.yml
       service: microservice-configserver-config

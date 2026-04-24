@@ -22,7 +22,7 @@ services:
     environment:
       # MS must be connected to configserver MS(!) >> spring.config.import from application.yml with localhost=MS name of configserver (=configserver)
       SPRING_CONFIG_IMPORT: "configserver:http://configserver:8071/"
-      SPRING_PROFILES_ACTIVE: qa
+      SPRING_PROFILES_ACTIVE: default
     # depends_on: # not possible with extends within one service (recent docker compose versions)
     #   configserver:
     #     condition: service_healthy
