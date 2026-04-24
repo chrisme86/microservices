@@ -137,7 +137,7 @@
                 <version>${jib-maven-plugin.version}</version>
                 <configuration>
                     <to>
-                        <image>cmiethling/${project.artifactId}:s6</image>
+                        <image>cmiethling/${project.artifactId}:s7</image>
                     </to>
                 </configuration>
             </plugin>

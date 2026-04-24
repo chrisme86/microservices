@@ -4,7 +4,20 @@ services:
     networks:
       - eazybank
 
-  # for all services except rabbit
+  microservice-db-config:
+    extends:
+      service: network-deploy-service
+    image: mysql
+    healthcheck: # if readiness is UP then continue, if not then exit all
+      test: [ "CMD","mysqladmin", "ping", "-h", "localhost" ]
+      timeout: 10s
+      retries: 10
+      interval: 10s
+      start_period: 10s
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+
+  # for all services except rabbit (if used)
   microservice-base-config:
     extends:
       service: network-deploy-service
@@ -23,6 +36,9 @@ services:
       # MS must be connected to configserver MS(!) >> spring.config.import from application.yml with localhost=MS name of configserver (=configserver)
       SPRING_CONFIG_IMPORT: "configserver:http://configserver:8071/"
       SPRING_PROFILES_ACTIVE: prod
+      # for MySQL
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: root
     # depends_on: # not possible with extends within one service (recent docker compose versions)
     #   configserver:
     #     condition: service_healthy

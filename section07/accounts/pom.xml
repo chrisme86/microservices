@@ -128,12 +128,12 @@
                 <version>${jib-maven-plugin.version}</version>
                 <configuration>
                     <to>
-                        <image>cmiethling/${project.artifactId}:s6</image>
+                        <image>cmiethling/${project.artifactId}:s7</image>
                     </to>
                 </configuration>
             </plugin>
             <!-- Create + run container: -->
-            <!--  docker run -d -p 9000:9000 cmiethling/accounts:s6 -->
+            <!--  docker run -d -p 9000:9000 cmiethling/accounts:s7 -->
 
             <!-- misc -->
             <plugin>
